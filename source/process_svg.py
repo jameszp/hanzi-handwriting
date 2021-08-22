@@ -5,7 +5,7 @@ def process_worksheet(hanzi):
     svg = open(hanzi.svg_file_name_original_still(), 'r').read()
 
     # make lines clear
-    svg = re.sub(r'<g stroke="lightgray"', '<g stroke="lightgray" stroke-opacity="0"', svg)
+    svg = re.sub(r'<g stroke="lightgray".*?</g>', '', svg, flags=re.DOTALL)
 
     # change color to black
     svg = re.sub(r'\.stroke1.*fill: #.{6};}', '.stroke {fill: #000000;}', svg, flags=re.DOTALL)
@@ -28,7 +28,7 @@ def process_flashcard(hanzi):
     svg = open(hanzi.svg_file_name_original_still(), 'r').read()
 
     # make lines clear
-    svg = re.sub(r'<g stroke="lightgray"', '<g stroke="lightgray" stroke-opacity="0"', svg)
+    svg = re.sub(r'<g stroke="lightgray".*?</g>', '', svg, flags=re.DOTALL)
 
     # change color to black
     svg = re.sub(r'\.stroke1.*fill: #.{6};}', '.stroke {fill: #000000;}', svg, flags=re.DOTALL)
